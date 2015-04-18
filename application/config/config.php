@@ -17,7 +17,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | environments.
 |
 */
-$config['base_url'] = 'http://localhost/materi/';
+$config['base_url'] = 'http://example.com/';
 
 /*
 |--------------------------------------------------------------------------
@@ -305,7 +305,7 @@ $config['cache_query_string'] = FALSE;
 | http://codeigniter.com/user_guide/libraries/encryption.html
 |
 */
-$config['encryption_key'] = 'k4d03lb4l1cyb3r';
+$config['encryption_key'] = 'terserah';
 
 /*
 |--------------------------------------------------------------------------
