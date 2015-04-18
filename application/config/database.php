@@ -64,10 +64,10 @@ $query_builder = TRUE;
 
 $db['default'] = array(
 	'dsn'	=> '',
-	'hostname' => 'localhost',
-	'username' => 'root',
-	'password' => 'k4d03lb4l1cyb3r',
-	'database' => 'elearning_smk',
+	'hostname' => 'isi_hostname_server',
+	'username' => 'isi_username_server',
+	'password' => 'isi_password_server',
+	'database' => 'isi_nama_database',
 	'dbdriver' => 'mysqli',
 	'dbprefix' => '',
 	'pconnect' => FALSE,
