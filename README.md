@@ -6,9 +6,10 @@ E-Learning Sederhana Untuk SMK
 2. Pengaturan Semester
 3. Pengaturan Tahun Ajaran
 4. Manajemen Admin dan Pengajar
-5. Manajemen Jurusan
-6. Manajemen Materi (Upload, Update, Delete) [Proses]
-7. Download Materi [Proses]
+5. Manajemen Profil
+6. Manajemen Jurusan
+7. Manajemen Materi (Upload, Update, Delete) [Proses]
+8. Download Materi [Proses]
 
 # Memulai
 1. Copy file hasil download ke folder root
