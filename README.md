@@ -5,7 +5,7 @@ E-Learning Sederhana Untuk SMK
 1. Multi Level Login (Admin dan Pengajar)
 2. Pengaturan Semester
 3. Pengaturan Tahun Ajaran
-4. Manajemen Pengajar
+4. Manajemen Admin dan Pengajar
 5. Manajemen Jurusan
 6. Manajemen Materi (Upload, Update, Delete) [Proses]
 7. Download Materi [Proses]
