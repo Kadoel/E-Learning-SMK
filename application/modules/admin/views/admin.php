@@ -42,17 +42,12 @@
         <div id="page-wrapper">
             <div class="row">
                 <div class="col-lg-12">
-                    <h1 class="page-header">Blank</h1>
+                    <h1 class="page-header">Dashboard Admin</h1>
                 </div>
                 <!-- /.col-lg-12 -->
             </div>
             <!-- /.row -->
-            <?php 
-            echo $this->session->userdata('user_id').'<br>';
-            echo $this->session->userdata('user_nama').'<br>';
-            echo $this->session->userdata('user_login').'<br>';
-            echo $this->session->userdata('group_user').'<br>';
-            ?>
+            <b>Selamat Datang <?= $this->session->userdata('user_nama'); ?></b>
         </div>
         <!-- /#page-wrapper -->
 
