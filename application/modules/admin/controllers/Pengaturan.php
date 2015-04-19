@@ -36,7 +36,7 @@ class Pengaturan extends CI_Controller{
 			$data['setting_thnajaran'] = $this->input->post('thnajaran', 'TRUE');
 			$ubah = $this->m_setting->update_setting('1', $data);
 			if($ubah){
-				$this->my_notifikasi->suksesreload("Pengaturan", "Pengaturan Berhasil Disimpan");
+				$this->my_notifikasi->sukses("Pengaturan", "Pengaturan Berhasil Disimpan, Silahkan Login Ulang!", "admin/logout");
 			}
 			else{
 				$this->err = $this->my_notifikasi->kesalahan("Gagal Menyimpan Setting");
