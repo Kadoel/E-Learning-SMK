@@ -4,21 +4,15 @@ header('Cache-Control: post-check=0, pre-check=0', FALSE);
 header('Pragma: no-cache');
 
 class Login extends CI_Controller{
-	public $group_user;
 	
 	public function __construct(){
 		parent::__construct();
 		$this->load->library(array('form_validation', 'MY_Handle'));
 		$this->load->helper(array('form'));
 		$this->load->model(array('m_pengajar'));
-
-		$this->group_user = $this->session->userdata('group_user');
 		
-		if($this->group_user =='1'){
+		if($this->session->userdata('logged_in')){
 			redirect(site_url('admin'));
-		}
-		else if($this->group_user =='2'){
-			redirect(site_url('pengajar'));
 		}
 	}
 	
@@ -59,11 +53,6 @@ class Login extends CI_Controller{
 			}
 		}
 		
-	}
-	
-	public function logout(){
-		$this->session->sess_destroy();
-		redirect(site_url('login'));
 	}
 }
 
