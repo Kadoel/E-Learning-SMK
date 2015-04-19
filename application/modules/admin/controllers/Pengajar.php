@@ -2,7 +2,7 @@
 header('Cache-Control: no-store, no-cache, must-revalidate');
 header('Cache-Control: post-check=0, pre-check=0', FALSE);
 header('Pragma: no-cache');
-class pengajar extends CI_Controller{
+class Pengajar extends CI_Controller{
 	public $err, $dataglobal;
 	public function __construct(){
 		parent::__construct();

@@ -7,6 +7,7 @@ class M_jurusan extends CI_Model{
 	function ambil_jurusan(){
 		$this->db->select('*');
 		$this->db->from('tb_jurusan');
+		$this->db->order_by('jurusan_nama', 'ASC');
 		return $this->db->get();
 	}
 	
