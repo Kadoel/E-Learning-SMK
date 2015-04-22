@@ -8,8 +8,9 @@ E-Learning Sederhana Untuk SMK
 4. Manajemen Admin dan Pengajar
 5. Manajemen Profil
 6. Manajemen Jurusan
-7. Manajemen Materi (Upload, Update, Delete) [Proses]
-8. Download Materi [Proses]
+7. Manajemen Materi (Upload, Update, Delete)[New]
+8. Download Materi [New]
+9. Kirim Terima Pesan [Proses]
 
 # Memulai
 1. Copy file hasil download ke folder root
