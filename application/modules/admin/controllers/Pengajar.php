@@ -132,8 +132,13 @@ class Pengajar extends CI_Controller{
 	}
 	
 	public function hapus($id){
-		$this->m_pengajar->hapus_pengajar($id);
-		redirect(site_url('admin/pengajar'));
+		if($this->m_pengajar->ambil_pengajar_id($id)->num_rows() >= 1){
+			$this->m_pengajar->hapus_pengajar($id);
+			redirect(site_url('admin/pengajar'));
+		}
+		else{
+			redirect(site_url('admin/pengajar'));
+		}
 	}
 }
 

@@ -42,12 +42,81 @@
         <div id="page-wrapper">
             <div class="row">
                 <div class="col-lg-12">
-                    <h1 class="page-header">Dashboard Admin</h1>
+                    <h1 class="page-header">Dashboard</h1>
                 </div>
                 <!-- /.col-lg-12 -->
             </div>
             <!-- /.row -->
-            <b>Selamat Datang <?= $this->session->userdata('user_nama'); ?></b>
+            <div class="row">
+                <div class="col-lg-4 col-md-6">
+                    <div class="panel panel-primary">
+                        <div class="panel-heading">
+                            <div class="row">
+                                <div class="col-xs-3">
+                                    <i class="fa fa-file-text fa-5x"></i>
+                                </div>
+                                <div class="col-xs-9 text-right">
+                                    <div class="huge"><?= $semuaMateri; ?></div>
+                                    <div><strong>Jumlah Semua Materi</strong></div>
+                                </div>
+                                &nbsp;&nbsp;&nbsp; <strong>Semester:</strong> <?= $this->session->userdata('semester');?> | <strong>Thn. Pelajaran:</strong> <?= $this->session->userdata('tahunajaran');?>
+                            </div>
+                        </div>
+                        <a href="<?= base_url('admin/semua_materi'); ?>">
+                            <div class="panel-footer">
+                                <span class="pull-left">Lihat Daftar</span>
+                                <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                                <div class="clearfix"></div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <div class="panel panel-green">
+                        <div class="panel-heading">
+                            <div class="row">
+                                <div class="col-xs-3">
+                                    <i class="fa fa-file-pdf-o fa-5x"></i>
+                                </div>
+                                <div class="col-xs-9 text-right">
+                                    <div class="huge"><?= $materiAnda; ?></div>
+                                    <div><strong>Jumlah Materi Anda</strong></div>
+                                </div>
+                                &nbsp;&nbsp;&nbsp; <strong>Semester:</strong> <?= $this->session->userdata('semester');?> | <strong>Thn. Pelajaran:</strong> <?= $this->session->userdata('tahunajaran');?>
+                            </div>
+                        </div>
+                        <a href="<?= base_url('admin/materi'); ?>">
+                            <div class="panel-footer">
+                                <span class="pull-left">Lihat Daftar</span>
+                                <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                                <div class="clearfix"></div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <div class="panel panel-red">
+                        <div class="panel-heading">
+                            <div class="row">
+                                <div class="col-xs-3">
+                                    <i class="fa fa-envelope fa-5x"></i>
+                                </div>
+                                <div class="col-xs-9 text-right">
+                                    <div class="huge">13</div>
+                                    <div><strong>Jumlah Semua Pesan</strong><br /><strong>Tanggal: </strong><?= dateindo(date('Y-m-d'));?></div>
+                                </div>
+                            </div>
+                        </div>
+                        <a href="#">
+                            <div class="panel-footer">
+                                <span class="pull-left">View Details</span>
+                                <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                                <div class="clearfix"></div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div><!-- /.row -->
         </div>
         <!-- /#page-wrapper -->
 

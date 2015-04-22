@@ -85,7 +85,8 @@
 								</div>
 								<?php 
 								$attsubmit = array(
-										'class'=>'btn btn-md btn-success',
+										'class'=>'btn btn-md btn-success ladda-button',
+										'data-style'=>'expand-right',
 										'id'=>'btn-jurusan',
 										'name'=>'btn-jurusan',
 										'type'=>'submit',

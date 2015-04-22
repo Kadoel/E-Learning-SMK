@@ -90,8 +90,13 @@ class Jurusan extends CI_Controller{
 	}
 	
 	public function hapus($id){ //Hapus Tag
+		if($this->m_jurusan->ambil_jurusan_id($id)->num_rows() >=1){
 			$this->m_jurusan->hapus_jurusan($id);
 			redirect(site_url('admin/jurusan'));
+		}
+		else{
+			redirect(site_url('admin/jurusan'));
+		}
 	}
 }
 

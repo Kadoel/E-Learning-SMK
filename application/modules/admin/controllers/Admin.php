@@ -7,6 +7,8 @@ class Admin extends CI_Controller{
 	
 	public function __construct(){
 		parent::__construct();
+		$this->load->helper(array('dateindo'));
+		$this->load->model(array('m_materi'));
 		
 		if(!$this->session->userdata('logged_in')){
 			redirect(site_url('login'));
@@ -14,7 +16,12 @@ class Admin extends CI_Controller{
 	}
 	
 	public function index(){
-		$this->load->view('admin');
+		$semester = $this->session->userdata('semester');
+		$thnajaran = $this->session->userdata('tahunajaran');
+		$pengajar = $this->session->userdata('user_id');
+		$data['semuaMateri'] = $this->m_materi->ambil_semua_materi($semester, $thnajaran)->num_rows();
+		$data['materiAnda'] = $this->m_materi->ambil_materi_pengajar($semester, $thnajaran, $pengajar)->num_rows();
+		$this->load->view('admin', $data);
 	}
 	
 }
