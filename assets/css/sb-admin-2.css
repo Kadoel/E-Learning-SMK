@@ -343,3 +343,8 @@ table.dataTable thead .sorting:after {
 .panel-yellow a:hover {
     color: #df8a13;
 }
+
+.cari{
+	padding:20px;
+	min-width:500px;
+}

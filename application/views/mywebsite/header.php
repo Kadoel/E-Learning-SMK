@@ -1,1 +1,0 @@
-<a href="<?php echo site_url(); ?>">Home</a> <a href="<?php echo base_url('fungsi'); ?>">Fungsi</a> <a href="<?php echo base_url('fungsi/subfungsi1'); ?>">Sub Fungsi1</a> <a href="<?php echo base_url('fungsi/subfungsi1/subfungsi2'); ?>">Sub Fungsi2</a> <a href="<?php echo base_url('fungsi/subfungsi1/subfungsi2/my-value'); ?>">Get Value</a>

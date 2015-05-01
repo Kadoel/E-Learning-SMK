@@ -18,6 +18,13 @@ class M_jurusan extends CI_Model{
 		return $this->db->get();
 	}
 	
+	function ambil_id_jurusan($slg){
+		$this->db->select('jurusan_id');
+		$this->db->from('tb_jurusan');
+		$this->db->where('jurusan_slug', $slg);
+		return $this->db->get();
+	}
+	
 	function tambah_jurusan($data){
 		return $this->db->insert('tb_jurusan', $data);
 	}
@@ -40,5 +47,5 @@ class M_jurusan extends CI_Model{
 	}
 }
 
-/* End of file Setting.php */
-/* Location: ./application/models/Setting.php */
+/* End of file M_jurusan.php */
+/* Location: ./application/models/M_jurusan.php */

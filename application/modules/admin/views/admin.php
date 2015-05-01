@@ -6,8 +6,6 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="">
 
     <title>Admin CP</title>
 
@@ -21,7 +19,7 @@
     <link href="<?= base_url('assets/css/sb-admin-2.css');?>" rel="stylesheet">
 
     <!-- Custom Fonts -->
-    <link href="<?= base_url('assets/font-awesome-4.1.0/css/font-awesome.min.css');?>" rel="stylesheet" type="text/css">
+    <link href="<?= base_url('assets/font-awesome-4.3.0/css/font-awesome.min.css');?>" rel="stylesheet" type="text/css">
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -102,14 +100,14 @@
                                     <i class="fa fa-envelope fa-5x"></i>
                                 </div>
                                 <div class="col-xs-9 text-right">
-                                    <div class="huge">13</div>
-                                    <div><strong>Jumlah Semua Pesan</strong><br /><strong>Tanggal: </strong><?= dateindo(date('Y-m-d'));?></div>
+                                    <div class="huge"><?= $semuaPesan; ?></div>
+                                    <div><strong>Jumlah Pesan Baru</strong><br /><strong>Tanggal: </strong><?= dateindo(date('Y-m-d'));?></div>
                                 </div>
                             </div>
                         </div>
-                        <a href="#">
+                        <a href="<?= base_url('admin/pesan');?>">
                             <div class="panel-footer">
-                                <span class="pull-left">View Details</span>
+                                <span class="pull-left">Lihat Daftar</span>
                                 <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
                                 <div class="clearfix"></div>
                             </div>

@@ -7,7 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Jurusan</title>
+    <title>Pelajaran</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="<?= base_url('assets/css/bootstrap.min.css');?>" rel="stylesheet">
@@ -49,7 +49,7 @@
         <div id="page-wrapper">
             <div class="row">
                 <div class="col-lg-12">
-                    <h1 class="page-header">Jurusan</h1>
+                    <h1 class="page-header">Mat. Pelajaran</h1>
                 </div>
                 <!-- /.col-lg-12 -->
             </div>
@@ -58,43 +58,42 @@
                 <div class="col-lg-4">
                     <div class="panel panel-primary">
                         <div class="panel-heading">
-                            <strong>Form Jurusan</strong>
+                            <strong>Form Mat. Pelajaran</strong>
                         </div>
                         <div class="panel-body">
 							<span id="warning"></span>
                             <?php
 							$attform = array(
-									'id' => 'form-jurusan',
+									'id' => 'form-pelajaran',
 									'role' => 'form'
 								);
-							echo form_open('admin/jurusan/act_jurusan', $attform);
+							echo form_open('admin/pelajaran/act_pelajaran', $attform);
 							?>
-								<input type="hidden" name="jurusan_id" value="<?php echo $idJurusan; ?>">
+								<input type="hidden" name="pelajaran_id" value="<?php echo $id_pelajaran; ?>">
 								<div class="form-group">
-									<label>Nama Jurusan</label>
+									<label>Nama Pelajaran</label>
                                     <?php $att = array('class'=>'form-control', 
-											'name'=>'jurusan_nama', 
-											'value'=>$namaJurusan,
-											'placeholder'=>'Masukkan Nama Jurusan',
+											'name'=>'pelajaran_nama', 
+											'value'=>$nama_pelajaran,
+											'placeholder'=>'Masukkan Nama Pelajaran',
 											'data-validation'=>'required',
-											'data-validation-error-msg'=>'Silahkan isi Nama Jurusan',
+											'data-validation-error-msg'=>'Silahkan isi Nama Pelajaran',
 											'data-toggle'=>"tooltip",
 											'data-placement'=>"top",
-											'title'=>"Tuliskan Nama Jurusan Dengan Lengkap");
+											'title'=>"Tuliskan Nama Pelajaran Dengan Lengkap");
 									echo form_input($att);
-									echo form_error('jurusan_nama'); ?>
+									echo form_error('pelajaran_nama'); ?>
 								</div>
 								<?php 
 								$attsubmit = array(
 										'class'=>'btn btn-md btn-outline btn-primary',
-										'data-style'=>'expand-right',
-										'id'=>'btn-jurusan',
-										'name'=>'btn-jurusan',
+										'id'=>'btn-pelajaran',
+										'name'=>'btn-pelajaran',
 										'type'=>'submit',
 										'content'=>'<i class="fa fa-save"></i> Simpan'); 
 								echo form_button($attsubmit); 
 								?>
-								 <img src="<?= base_url()?>assets/images/ajax-loader.gif" id="LoadingImage" style="display:none; width:50px; height:50px;" />
+								<img src="<?= base_url()?>assets/images/ajax-loader.gif" id="LoadingImage" style="display:none; width:50px; height:50px;" />
                             </form>
                         </div>
                         <!-- /.panel-body -->
@@ -105,29 +104,29 @@
                 <div class="col-lg-8">
 					<div class="panel panel-primary">
                         <div class="panel-heading">
-                            <strong>Data Jurusan</strong>
+                            <strong>Data Mat. Pelajaran</strong>
                         </div>
                         <div class="panel-body">
-							<table id="tabel-jurusan" class="table table-hover">
+							<table id="tabel-pelajaran" class="table table-hover">
 								<thead>
 									<tr>
 										<th>#</th>
-										<th>Nama Jurusan</th>
+										<th>Nama Mat. Pelajaran</th>
 										<th>Kontrol</th>
 									</tr>
 								</thead>
 								<tbody>
 									<?php 
 									$no = 0;
-									foreach($listJurusan as $jurusan_data) {?>
+									foreach($listPelajaran as $pelajaran_data) {?>
 									<tr>
 										<td><?php echo $no = $no+1; ?></td>
-										<td><?php echo $jurusan_data->jurusan_nama; ?></td>
+										<td><?php echo $pelajaran_data->pelajaran_nama; ?></td>
 										<td>
-											<a href="<?php echo site_url('admin/jurusan/edit/'.$jurusan_data->jurusan_id);?>">
+											<a href="<?php echo site_url('admin/pelajaran/edit/'.$pelajaran_data->pelajaran_id);?>">
 												<i class="fa fa-pencil"></i>
 											</a>&nbsp;
-											<a href="<?php echo site_url('admin/jurusan/hapus/'.$jurusan_data->jurusan_id);?>" class="hapus-jurusan">
+											<a href="<?php echo site_url('admin/pelajaran/hapus/'.$pelajaran_data->pelajaran_id);?>" class="hapus-pelajaran">
 												<i class="fa fa-times"></i>
 											</a>
 										</td>

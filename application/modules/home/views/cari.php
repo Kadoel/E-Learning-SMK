@@ -6,8 +6,10 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
 
-    <title>Semua Materi</title>
+    <title>Cari Materi</title>
 
    <!-- Bootstrap Core CSS -->
     <link href="<?= base_url('assets/css/bootstrap.min.css');?>" rel="stylesheet">
@@ -37,22 +39,23 @@
 
     <div id="wrapper">
 
-        <?php $this->load->view('include/menu_admin'); ?>
+        <?php $this->load->view('include/menu_home'); ?>
 
         <!-- Page Content -->
         <div id="page-wrapper">
             <div class="row">
                 <div class="col-lg-12">
-                    <h1 class="page-header">Semua Materi</h1>
+                    <h1 class="page-header">Cari Materi</h1>
                 </div>
                 <!-- /.col-lg-12 -->
             </div>
             <!-- /.row -->
+
             <div class="row">
                 <div class="col-lg-12">
 					<div class="panel panel-primary">
                         <div class="panel-heading">
-                            <strong>Data Semua Materi | Semester: <span class="badge badge-success"><?= $this->session->userdata('semester'); ?></span> | Tahun Pelajaran: <span class="badge badge-success"><?= $this->session->userdata('tahunajaran'); ?></span></strong>
+                            <strong>Cari Materi: <span class="badge badge-success"><?= $infokelas."/".$infopelajaran."/".$infopengajar; ?></span> | Semester: <span class="badge badge-success"><?= $semester; ?></span> | Tahun Pelajaran: <span class="badge badge-success"><?= $thnajaran; ?></span></strong>
                         </div>
                         <div class="panel-body">
 							<div class="table-responsive">
@@ -65,8 +68,8 @@
 										<th>Kelas</th>
 										<th>Pelajaran</th>
 										<th>Pengajar</th>
-										<th>File</th>
 										<th>Tanggal</th>
+										<th>File</th>
 									</tr>
 								</thead>
 								<tbody>
@@ -80,8 +83,8 @@
 										<td><?php echo $materi_data->kelas_nama." ".$materi_data->jurusan_nama." ".$materi_data->kelas_no; ?></td>
 										<td><?php echo $materi_data->pelajaran_nama; ?></td>
 										<td><?php echo $materi_data->pengajar_nama; ?></td>
-										<td><a href="<?php echo base_url('assets/uploads').'/'.$materi_data->materi_file; ?>"><i class="fa fa-download"></i></a></td>
 										<td><?php echo $materi_data->materi_tanggal; ?></td>
+										<td><a href="<?php echo base_url('assets/uploads').'/'.$materi_data->materi_file; ?>"><i class="fa fa-download"></i></a></td>
 									</tr>
 									<?php } ?>
 								</tbody>
@@ -108,11 +111,22 @@
     <!-- Custom Theme JavaScript -->
     <script src="<?= base_url('assets/js/sb-admin-2.js');?>"></script>
     
+    <script src="<?= base_url('assets/plugins/validasi/jquery.form-validator.js');?>"></script>
+    
     <!-- DataTable js -->
     <script src="<?= base_url('assets/plugins/dataTables/jquery.dataTables.js');?>" type="text/javascript"></script>
     <script src="<?= base_url('assets/plugins/dataTables/dataTables.bootstrap.js');?>" type="text/javascript"></script>
     
     <?= $dataTable; ?>
+    <?= $validasi; ?>
+    
+    <script>
+    // tooltip demo
+    $('.form-group').tooltip({
+        selector: "[data-toggle=tooltip]",
+        container: "body"
+    })
+    </script>
 </body>
 
 </html>

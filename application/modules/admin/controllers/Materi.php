@@ -8,12 +8,13 @@ class Materi extends CI_Controller{
 		parent::__construct();
 		$this->load->library(array('form_validation', 'MY_Handle', 'MY_Notifikasi', 'upload'));
 		$this->load->helper(array('form', 'dateindo'));
-		$this->load->model(array('m_materi', 'm_jurusan'));
+		$this->load->model(array('m_materi', 'm_kelas', 'm_pelajaran'));
 		
 		$this->err = $this->my_notifikasi->kesalahan("Hayooo... Mau Ngapain :p");
 		$this->dataglobal = array(
 			'list_materi' => $this->m_materi->ambil_materi_pengajar($this->session->userdata('semester'), $this->session->userdata('tahunajaran'), $this->session->userdata('user_id'))->result(),
-			'list_jurusan' => $this->m_jurusan->ambil_jurusan()->result(),
+			'list_kelas' => $this->m_kelas->ambil_kelas()->result(),
+			'list_pelajaran' => $this->m_pelajaran->ambil_pelajaran()->result(),
 			'validasi' => $this->my_handle->validasi("form-materi"),
 			'datatable' => $this->my_handle->datatable("tabel-materi", '5'),
 			'hapusdata' => $this->my_handle->hapusdata("hapus-materi")
@@ -31,7 +32,7 @@ class Materi extends CI_Controller{
 		$data['deskripsi_materi'] = "";
 		$data['file_materi'] = " ";
 		$data['kelas_materi'] = "";
-		$data['jurusan_materi'] = "";
+		$data['pelajaran_materi'] = "";
 		$this->load->view('materi', $data);
 	}
 	
@@ -45,15 +46,15 @@ class Materi extends CI_Controller{
 				$data['deskripsi_materi'] = $dataMateri->materi_deskripsi;
 				$data['file_materi'] = " disabled ";
 				$data['kelas_materi'] = $dataMateri->materi_kelas;
-				$data['jurusan_materi'] = $dataMateri->materi_jurusan;
+				$data['pelajaran_materi'] = $dataMateri->materi_pelajaran;
 				$this->load->view('materi', $data);
 			}
 			else{
-				redirect(site_url('admin/materi'));
+				$this->load->view('include/halamantidakditemukan');
 			}
 		}
 		else{
-			redirect(site_url('admin/materi'));
+			$this->load->view('include/halamantidakditemukan');
 		}
 	}
 	
@@ -61,7 +62,7 @@ class Materi extends CI_Controller{
 		$this->form_validation->set_rules('materi_nama', 'Nama Materi', 'trim|required|xss_clean');
 		$this->form_validation->set_rules('materi_deskripsi', 'Deskripsi Materi', 'trim|required|xss_clean');
 		$this->form_validation->set_rules('materi_kelas', 'Kelas', 'trim|required|xss_clean');
-		$this->form_validation->set_rules('materi_jurusan', 'Jurusan', 'trim|required|xss_clean');
+		$this->form_validation->set_rules('materi_pelajaran', 'Mat. Pelajaran', 'trim|required|xss_clean');
 		if($this->form_validation->run()==FALSE){
 			echo $this->err;
 		}
@@ -70,7 +71,7 @@ class Materi extends CI_Controller{
 			$data['materi_nama'] = $this->input->post('materi_nama', 'TRUE');
 			$data['materi_deskripsi'] = $this->input->post('materi_deskripsi', 'TRUE');
 			$data['materi_kelas'] = $this->input->post('materi_kelas', 'TRUE');
-			$data['materi_jurusan'] = $this->input->post('materi_jurusan', 'TRUE');
+			$data['materi_pelajaran'] = $this->input->post('materi_pelajaran', 'TRUE');
 			if($id==''){
 				$nmfile = "Materi_".date('dmYHis'); //nama file saya beri nama langsung dan diikuti fungsi time
 				$config['upload_path'] = './assets/uploads/'; //path folder
@@ -121,12 +122,17 @@ class Materi extends CI_Controller{
 	public function hapus($id){
 		if($this->m_materi->ambil_materi_id($id)->num_rows() >=1){
 			$dataHapus = $this->m_materi->ambil_materi_id($id)->row();
-			unlink("./assets/uploads/".$dataHapus->materi_file);
-			$this->m_materi->hapus_materi($id);
-			redirect(site_url('admin/materi'));
+			if($dataHapus->materi_pengajar == $this->session->userdata('user_id')){
+				unlink("./assets/uploads/".$dataHapus->materi_file);
+				$this->m_materi->hapus_materi($id);
+				redirect(site_url('admin/materi'));
+			}
+			else{
+				$this->load->view('include/halamantidakditemukan');
+			}
 		}
 		else{
-			redirect(site_url('admin/materi'));
+			$this->load->view('include/halamantidakditemukan');
 		}
 	}
 }

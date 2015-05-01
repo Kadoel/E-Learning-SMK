@@ -13,10 +13,12 @@
 		function kirimdata($idbutton, $idform, $iddiv){
 			$kirim = '<script type="text/javascript">
 				$("#'.$idbutton.'").click(function(){
+					$("#LoadingImage").show();
 					$.post(	$("#'.$idform.'").attr("action"), 
 							$("#'.$idform.'").serializeArray(), 
 							function(info){
 								$("#'.$iddiv.'").html(info);
+								$("#LoadingImage").hide();
 					});
 				});
 				

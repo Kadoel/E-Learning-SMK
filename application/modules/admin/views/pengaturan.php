@@ -6,8 +6,6 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="">
 
     <title>Pengaturan</title>
 
@@ -21,7 +19,7 @@
     <link href="<?= base_url('assets/css/sb-admin-2.css');?>" rel="stylesheet">
 
     <!-- Custom Fonts -->
-    <link href="<?= base_url('assets/font-awesome-4.1.0/css/font-awesome.min.css');?>" rel="stylesheet" type="text/css">
+    <link href="<?= base_url('assets/font-awesome-4.3.0/css/font-awesome.min.css');?>" rel="stylesheet" type="text/css">
     
      <script src="<?= base_url('assets/plugins/alertify/alertify.min.js');?>"></script>
 	<!-- include the style -->
@@ -72,7 +70,7 @@
 									?>
                                         <div class="form-group">
                                             <label>Semester</label>
-                                            <select class="form-control" name="semester">
+                                            <select class="form-control" name="semester" data-toggle="tooltip" data-placement="top" title="Tentukan Semester Untuk Saat Ini">
 												<?php
 												$semester = array('Ganjil', 'Genap');
 												foreach($semester as $smt){
@@ -88,8 +86,8 @@
                                         </div>
 
                                         <div class="form-group">
-                                            <label>Tahun Ajaran</label>
-                                            <select class="form-control" name="thnajaran">
+                                            <label>Tahun Pelajaran</label>
+                                            <select class="form-control" name="thnajaran" data-toggle="tooltip" data-placement="top" title="Tentukan Tahun Pelajaran Untuk Saat Ini">
 												<?php
 												$th = date('Y'); 
 												$th1 =  date('Y', strtotime('-1 year', strtotime($th))).'/'.$th;
@@ -109,13 +107,14 @@
                                         </div>
                                         <?php 
 										$attsubmit = array(
-												'class'=>'btn btn-md btn-success',
+												'class'=>'btn btn-md btn-outline btn-primary',
 												'id'=>'btn-pengaturan',
 												'name'=>'btn-pengaturan',
 												'type'=>'submit',
-												'content'=>'Update'); 
+												'content'=>'<i class="fa fa-save"></i> Update'); 
 										echo form_button($attsubmit); 
 										?>
+										<img src="<?= base_url()?>assets/images/ajax-loader.gif" id="LoadingImage" style="display:none; width:50px; height:50px;" />
                                     </form>
                                 </div>
                                 <!-- /.col-lg-6 (nested) -->
@@ -149,6 +148,14 @@
     <script src="<?= base_url('assets/js/sb-admin-2.js');?>"></script>
     
     <?= $kirim; ?>
+    
+    <script>
+    // tooltip demo
+    $('.form-group').tooltip({
+        selector: "[data-toggle=tooltip]",
+        container: "body"
+    })
+    </script>
 Page rendered in <strong>{elapsed_time}</strong> seconds.
 </body>
 

@@ -6,22 +6,17 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="">
 
     <title>Login - Elearning</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="<?= base_url('assets/css/bootstrap.min.css');?>" rel="stylesheet">
 
-    <!-- MetisMenu CSS -->
-    <link href="<?= base_url('assets/plugins/metisMenu/metisMenu.min.'); ?>" rel="stylesheet">
-
     <!-- Custom CSS -->
     <link href="<?= base_url('assets/css/sb-admin-2.css');?>" rel="stylesheet">
 
     <!-- Custom Fonts -->
-    <link href="<?= base_url('assets/font-awesome-4.1.0/css/font-awesome.min.css');?>" rel="stylesheet" type="text/css">
+    <link href="<?= base_url('assets/font-awesome-4.3.0/css/font-awesome.min.css');?>" rel="stylesheet" type="text/css">
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -38,7 +33,7 @@
             <div class="col-md-4 col-md-offset-4">
                 <div class="login-panel panel panel-default">
                     <div class="panel-heading">
-                        <h3 class="panel-title">Silahkan Login</h3>
+                        <h3 class="panel-title"><i class="fa fa-sign-in"></i><strong> Silahkan Login</strong></h3>
                     </div>
                     <div class="panel-body">
 						<div class="confirm"></div>
@@ -81,11 +76,11 @@
                                 <!-- Change this to a button or input when using this as a form -->
                                 <?php 
                                 $attsubmit = array(
-										'class'=>'btn btn-lg btn-success btn-block',
+										'class'=>'btn btn-lg btn-outline btn-success btn-block',
 										'id'=>'smb-login',
 										'name'=>'smb-login',
 										'type'=>'submit',
-										'content'=>'Login'); 
+										'content'=>'<i class="fa fa-sign-in"></i> Login'); 
 								echo form_button($attsubmit); ?>
                             </fieldset>
                         </form>

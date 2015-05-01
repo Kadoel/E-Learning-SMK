@@ -6,8 +6,6 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="">
 
     <title>Materi</title>
 
@@ -21,7 +19,7 @@
     <link href="<?= base_url('assets/css/sb-admin-2.css');?>" rel="stylesheet">
 
     <!-- Custom Fonts -->
-    <link href="<?= base_url('assets/font-awesome-4.1.0/css/font-awesome.min.css');?>" rel="stylesheet" type="text/css">
+    <link href="<?= base_url('assets/font-awesome-4.3.0/css/font-awesome.min.css');?>" rel="stylesheet" type="text/css">
     
     <!-- DataTable css -->
     <link href="<?= base_url('assets/css/dataTables.bootstrap.css');?>" rel="stylesheet" />
@@ -79,7 +77,10 @@
 											'value'=>$nama_materi,
 											'placeholder'=>'Masukkan Nama Materi',
 											'data-validation'=>'required',
-											'data-validation-error-msg'=>'Silahkan isi Nama Materi');
+											'data-validation-error-msg'=>'Silahkan isi Nama Materi',
+											'data-toggle'=>"tooltip",
+											'data-placement'=>"top",
+											'title'=>"Tuliskan Nama Materi Dengan Jelas");
 									echo form_input($att);
 									echo form_error('materi_nama'); ?>
 								</div>
@@ -91,23 +92,25 @@
 											'value'=>$deskripsi_materi,
 											'placeholder'=>'Masukkan Deskripsi Materi',
 											'data-validation'=>'required',
-											'data-validation-error-msg'=>'Silahkan isi Deskripsi Materi');
+											'data-validation-error-msg'=>'Silahkan isi Deskripsi Materi',
+											'data-toggle'=>"tooltip",
+											'data-placement'=>"top",
+											'title'=>"Tuliskan Deskripsi Materi Dengan Singkat dan Jelas");
 									echo form_input($att);
 									echo form_error('materi_nama'); ?>
 								</div>
 								
-								<div class="form-group">
+                                <div class="form-group">
                                     <label>Kelas</label>
-                                    <select class="form-control" name="materi_kelas" data-validation="required" data-validation-error-msg="Silahkan Pilih Kelas">
+                                    <select class="form-control" name="materi_kelas" data-validation="required" data-validation-error-msg="Silahkan Pilih Kelas" data-toggle="tooltip" data-placement="top" title="Pilih Kelas Sesuai Sasaran Materi">
 										<?php
-										$kelas = array('X'=>'X', 'XI'=>'XI', 'XII'=>'XII');
 										echo'<option value="">-- Pilih Kelas --</option>';
-										foreach($kelas as $kls => $values){
-											echo '<option value="'.$kls.'"';
-												if($kls == $kelas_materi){
+										foreach($list_kelas as $kls){
+											echo '<option value="'.$kls->kelas_id.'"';
+												if($kls->kelas_id == $kelas_materi){
 													echo ' selected';
 												}
-											echo '>'.$values.'</option>';
+											echo '>'.$kls->kelas_nama.' '.$kls->jurusan_nama.' '.$kls->kelas_no.'</option>';
 											echo form_error('materi_kelas');
 										}
 										?>
@@ -115,17 +118,17 @@
                                 </div>
                                 
                                 <div class="form-group">
-                                    <label>Jurusan</label>
-                                    <select class="form-control" name="materi_jurusan" data-validation="required" data-validation-error-msg="Silahkan Pilih Jurusan">
+                                    <label>Mat. Pelajaran</label>
+                                    <select class="form-control" name="materi_pelajaran" data-validation="required" data-validation-error-msg="Silahkan Pilih Mata Pelajaran" data-toggle="tooltip" data-placement="top" title="Pilih Mata Pelajaran Sesuai Sasaran Materi">
 										<?php
-										echo'<option value="">-- Pilih Jurusan --</option>';
-										foreach($list_jurusan as $jrs){
-											echo '<option value="'.$jrs->jurusan_id.'"';
-												if($jrs->jurusan_id == $jurusan_materi){
+										echo'<option value="">-- Pilih Mat. Pelajaran --</option>';
+										foreach($list_pelajaran as $pljr){
+											echo '<option value="'.$pljr->pelajaran_id.'"';
+												if($pljr->pelajaran_id == $pelajaran_materi){
 													echo ' selected';
 												}
-											echo '>'.$jrs->jurusan_nama.'</option>';
-											echo form_error('materi_jurusan');
+											echo '>'.$pljr->pelajaran_nama.'</option>';
+											echo form_error('materi_pelajaran');
 										}
 										?>
                                     </select>
@@ -133,16 +136,16 @@
                                 
                                 <div class="form-group">
                                     <label>Pilih Materi</label>
-                                    <input type="file" name="materi_file"<?=$file_materi;?>data-validation="extension required" data-validation-allowing="doc, docx, ppt, pptx, xls, xlsx, pdf" data-validation-error-msg="Hanya Boleh File Dokumen (Word, Excel, Powerpoint, PDF)">
+                                    <input type="file" name="materi_file"<?=$file_materi;?>data-validation="extension required" data-validation-allowing="doc, docx, ppt, pptx, xls, xlsx, pdf" data-validation-error-msg="Hanya Boleh File Dokumen (Word, Excel, Powerpoint, PDF)" data-toggle="tooltip" data-placement="top" title="Pilih Hanya File Dokumen Saja (Word, Excel, Powerpoint, PDF)">
                                 </div>
                                 
 								<?php 
 								$attsubmit = array(
-										'class'=>'btn btn-md btn-success',
+										'class'=>'btn btn-md btn-outline btn-primary',
 										'id'=>'btn-materi',
 										'name'=>'btn-materi',
 										'type'=>'submit',
-										'content'=>'Simpan'); 
+										'content'=>'<i class="fa fa-save"></i> Simpan'); 
 								echo form_button($attsubmit); 
 								?>
                             </form>
@@ -154,7 +157,7 @@
                 <div class="col-lg-12">
 					<div class="panel panel-primary">
                         <div class="panel-heading">
-                            <strong>Data Materi Anda | Semester: <?= $this->session->userdata('semester'); ?> | Tahun Ajaran: <?= $this->session->userdata('tahunajaran'); ?></strong>
+                            <strong>Data Materi Anda | Semester: <span class="badge badge-success"><?= $this->session->userdata('semester'); ?></span> | Tahun Pelajaran: <span class="badge badge-success"><?= $this->session->userdata('tahunajaran'); ?></span></strong>
                         </div>
                         <div class="panel-body">
 							<div class="table-responsive">
@@ -165,6 +168,7 @@
 										<th>Materi</th>
 										<th>Deskripsi</th>
 										<th>Kelas</th>
+										<th>Pelajaran</th>
 										<th>File</th>
 										<th>Tanggal</th>
 										<th>Kontrol</th>
@@ -178,8 +182,9 @@
 										<td><?php echo $no = $no+1; ?></td>
 										<td><?php echo $materi_data->materi_nama; ?></td>
 										<td><?php echo $materi_data->materi_deskripsi; ?></td>
-										<td><?php echo $materi_data->materi_kelas." ".$materi_data->jurusan_nama; ?></td>
-										<td><a href="<?php echo base_url('assets/uploads').'/'.$materi_data->materi_file; ?>"><span class="glyphicon glyphicon-floppy-save"></span></a></td>
+										<td><?php echo $materi_data->kelas_nama." ".$materi_data->jurusan_nama." ".$materi_data->kelas_no; ?></td>
+										<td><?php echo $materi_data->pelajaran_nama; ?></td>
+										<td><a href="<?php echo base_url('assets/uploads').'/'.$materi_data->materi_file; ?>"><i class="fa fa-download"></i></a></td>
 										<td><?php echo $materi_data->materi_tanggal; ?></td>
 										<td>
 											<a href="<?php echo site_url('admin/materi/edit/'.$materi_data->materi_id);?>">
@@ -243,6 +248,14 @@
 			});
 		<?php } ?>
 	</script>
+	
+	<script>
+    // tooltip demo
+    $('.form-group').tooltip({
+        selector: "[data-toggle=tooltip]",
+        container: "body"
+    })
+    </script>
 
 </body>
 

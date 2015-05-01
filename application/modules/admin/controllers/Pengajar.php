@@ -51,7 +51,7 @@ class Pengajar extends CI_Controller{
 			$this->load->view('pengajar', $data);
 		}
 		else{
-			redirect(site_url('admin/pengajar'));
+			$this->load->view('include/halamantidakditemukan');
 		}
 	}
 	
@@ -137,7 +137,7 @@ class Pengajar extends CI_Controller{
 			redirect(site_url('admin/pengajar'));
 		}
 		else{
-			redirect(site_url('admin/pengajar'));
+			$this->load->view('include/halamantidakditemukan');
 		}
 	}
 }

@@ -7,7 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Jurusan</title>
+    <title>Kelas</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="<?= base_url('assets/css/bootstrap.min.css');?>" rel="stylesheet">
@@ -49,7 +49,7 @@
         <div id="page-wrapper">
             <div class="row">
                 <div class="col-lg-12">
-                    <h1 class="page-header">Jurusan</h1>
+                    <h1 class="page-header">Kelas</h1>
                 </div>
                 <!-- /.col-lg-12 -->
             </div>
@@ -58,43 +58,76 @@
                 <div class="col-lg-4">
                     <div class="panel panel-primary">
                         <div class="panel-heading">
-                            <strong>Form Jurusan</strong>
+                            <strong>Form Kelas</strong>
                         </div>
                         <div class="panel-body">
 							<span id="warning"></span>
                             <?php
 							$attform = array(
-									'id' => 'form-jurusan',
+									'id' => 'form-kelas',
 									'role' => 'form'
 								);
-							echo form_open('admin/jurusan/act_jurusan', $attform);
+							echo form_open('admin/kelas/act_kelas', $attform);
 							?>
-								<input type="hidden" name="jurusan_id" value="<?php echo $idJurusan; ?>">
+								<input type="hidden" name="kelas_id" value="<?php echo $id_kelas; ?>">
 								<div class="form-group">
-									<label>Nama Jurusan</label>
+									<label>Tingkat</label>
+                                    <select class="form-control" name="kelas_nama" data-validation="required" data-validation-error-msg="Silahkan Pilih Tingkat" data-toggle="tooltip" data-placement="top" title="Pilih Tingkat Kelas">
+										<?php
+										$kelas = array('X'=>'X', 'XI'=>'XI', 'XII'=>'XII');
+										echo'<option value="">-- Pilih Tingkat --</option>';
+										foreach($kelas as $kls => $values){
+											echo '<option value="'.$kls.'"';
+												if($kls == $nama_kelas){
+													echo ' selected';
+												}
+											echo '>'.$values.'</option>';
+											echo form_error('kelas_nama');
+										}
+										?>
+                                    </select>
+								</div>
+								
+								<div class="form-group">
+                                    <label>Jurusan</label>
+                                    <select class="form-control" name="kelas_jurusan" data-validation="required" data-validation-error-msg="Silahkan Pilih Jurusan" data-toggle="tooltip" data-placement="top" title="Pilih Jurusan Sesuai Sasaran Tingkat">
+										<?php
+										echo'<option value="">-- Pilih Jurusan --</option>';
+										foreach($listJurusan as $jrs){
+											echo '<option value="'.$jrs->jurusan_id.'"';
+												if($jrs->jurusan_id == $jurusan_kelas){
+													echo ' selected';
+												}
+											echo '>'.$jrs->jurusan_nama.'</option>';
+											echo form_error('kelas_jurusan');
+										}
+										?>
+                                    </select>
+                                </div>
+                                
+                                <div class="form-group">
+									<label>No</label>
                                     <?php $att = array('class'=>'form-control', 
-											'name'=>'jurusan_nama', 
-											'value'=>$namaJurusan,
-											'placeholder'=>'Masukkan Nama Jurusan',
-											'data-validation'=>'required',
-											'data-validation-error-msg'=>'Silahkan isi Nama Jurusan',
+											'name'=>'kelas_no', 
+											'value'=>$no_kelas,
+											'placeholder'=>'Masukkan No (Jika Ada)',
 											'data-toggle'=>"tooltip",
 											'data-placement'=>"top",
-											'title'=>"Tuliskan Nama Jurusan Dengan Lengkap");
+											'title'=>"Tuliskan Nomor Tingkatnya (Jika Ada)");
 									echo form_input($att);
-									echo form_error('jurusan_nama'); ?>
+									echo form_error('kelas_no'); ?>
 								</div>
+								
 								<?php 
 								$attsubmit = array(
 										'class'=>'btn btn-md btn-outline btn-primary',
-										'data-style'=>'expand-right',
-										'id'=>'btn-jurusan',
-										'name'=>'btn-jurusan',
+										'id'=>'btn-kelas',
+										'name'=>'btn-kelas',
 										'type'=>'submit',
 										'content'=>'<i class="fa fa-save"></i> Simpan'); 
 								echo form_button($attsubmit); 
 								?>
-								 <img src="<?= base_url()?>assets/images/ajax-loader.gif" id="LoadingImage" style="display:none; width:50px; height:50px;" />
+								<img src="<?= base_url()?>assets/images/ajax-loader.gif" id="LoadingImage" style="display:none; width:50px; height:50px;" />
                             </form>
                         </div>
                         <!-- /.panel-body -->
@@ -105,29 +138,29 @@
                 <div class="col-lg-8">
 					<div class="panel panel-primary">
                         <div class="panel-heading">
-                            <strong>Data Jurusan</strong>
+                            <strong>Data Kelas | Semester: <span class="badge badge-success"><?= $this->session->userdata('semester'); ?></span> | Tahun Pelajaran: <span class="badge badge-success"><?= $this->session->userdata('tahunajaran'); ?></span></strong></strong>
                         </div>
                         <div class="panel-body">
-							<table id="tabel-jurusan" class="table table-hover">
+							<table id="tabel-kelas" class="table table-hover">
 								<thead>
 									<tr>
 										<th>#</th>
-										<th>Nama Jurusan</th>
+										<th>Nama Kelas</th>
 										<th>Kontrol</th>
 									</tr>
 								</thead>
 								<tbody>
 									<?php 
 									$no = 0;
-									foreach($listJurusan as $jurusan_data) {?>
+									foreach($listKelas as $kelas_data) {?>
 									<tr>
 										<td><?php echo $no = $no+1; ?></td>
-										<td><?php echo $jurusan_data->jurusan_nama; ?></td>
+										<td><?php echo $kelas_data->kelas_nama." ".$kelas_data->jurusan_nama." ".$kelas_data->kelas_no; ?></td>
 										<td>
-											<a href="<?php echo site_url('admin/jurusan/edit/'.$jurusan_data->jurusan_id);?>">
+											<a href="<?php echo site_url('admin/kelas/edit/'.$kelas_data->kelas_id);?>">
 												<i class="fa fa-pencil"></i>
 											</a>&nbsp;
-											<a href="<?php echo site_url('admin/jurusan/hapus/'.$jurusan_data->jurusan_id);?>" class="hapus-jurusan">
+											<a href="<?php echo site_url('admin/kelas/hapus/'.$kelas_data->kelas_id);?>" class="hapus-kelas">
 												<i class="fa fa-times"></i>
 											</a>
 										</td>

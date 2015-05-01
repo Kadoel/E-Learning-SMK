@@ -6,8 +6,6 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="">
 
     <title>Pengajar</title>
 
@@ -21,7 +19,7 @@
     <link href="<?= base_url('assets/css/sb-admin-2.css');?>" rel="stylesheet">
 
     <!-- Custom Fonts -->
-    <link href="<?= base_url('assets/font-awesome-4.1.0/css/font-awesome.min.css');?>" rel="stylesheet" type="text/css">
+    <link href="<?= base_url('assets/font-awesome-4.3.0/css/font-awesome.min.css');?>" rel="stylesheet" type="text/css">
     
     <!-- DataTable css -->
     <link href="<?= base_url('assets/css/dataTables.bootstrap.css');?>" rel="stylesheet" />
@@ -81,7 +79,10 @@
 												'value'=>$nama_pengajar,
 												'placeholder'=>'Masukkan Nama Pengajar',
 												'data-validation'=>'required',
-												'data-validation-error-msg'=>'Silahkan isi Nama Pengajar');
+												'data-validation-error-msg'=>'Silahkan isi Nama Pengajar',
+												'data-toggle'=>"tooltip",
+												'data-placement'=>"top",
+												'title'=>"Tuliskan Nama Pengajar Beserta Dengan Titlenya");
 										echo form_input($att);
 										echo form_error('pengajar_nama'); ?>
 									</div>
@@ -91,7 +92,10 @@
 										<?php $attnip = array('class'=>'form-control', 
 												'name'=>'pengajar_nip', 
 												'value'=>$nip_pengajar,
-												'placeholder'=>'Masukkan NIP (Untuk PNS)');
+												'placeholder'=>'Masukkan NIP (Untuk PNS)',
+												'data-toggle'=>"tooltip",
+												'data-placement'=>"top",
+												'title'=>"Tuliskan NIP Hanya Untuk PNS");
 										echo form_input($attnip);
 										echo form_error('pengajar_nip'); ?>
 									</div>
@@ -105,7 +109,10 @@
 												'data-validation'=>'custom length',
 												'data-validation-regexp'=>'^([a-z]+)$',
 												'data-validation-length'=>'min5',
-												'data-validation-error-msg'=>'Username Hanya Boleh (a-z), dan Minimal 5 karakter');
+												'data-validation-error-msg'=>'Username Hanya Boleh (a-z), dan Minimal 5 karakter',
+												'data-toggle'=>"tooltip",
+												'data-placement'=>"top",
+												'title'=>"Tuliskan Username Minimal 5 Karakter");
 										echo form_input($attusername);
 										echo form_error('pengajar_username'); ?>
 									</div>
@@ -118,7 +125,10 @@
 												'placeholder'=>'Masukkan Password',
 												'data-validation'=>'length required',
 												'data-validation-length'=>'min8',
-												'data-validation-error-msg'=>'Password harus 8 karakter atau lebih');
+												'data-validation-error-msg'=>'Password harus 8 karakter atau lebih',
+												'data-toggle'=>"tooltip",
+												'data-placement'=>"top",
+												'title'=>"Tuliskan Password Dengan Kombinasi Huruf, Angka, Symbol");
 										echo form_password($attpass);
 										echo form_error('pengajar_password'); ?>
 									</div>
@@ -132,14 +142,17 @@
 												'placeholder'=>'Masukkan Alamat',
 												'style'=>'min-height:110px; height:100px; max-height:150px; min-width:100%; max-width:100%; width:100%; ',
 												'data-validation'=>'required',
-												'data-validation-error-msg'=>'Silahkan isi Alamat Pengajar');
+												'data-validation-error-msg'=>'Silahkan isi Alamat Pengajar',
+												'data-toggle'=>"tooltip",
+												'data-placement'=>"top",
+												'title'=>"Tuliskan Alamat Dengan Lengkap");
 										echo form_textarea($attalamat);
 										echo form_error('pengajar_alamat'); ?>
 									</div>
 									
 									<div class="form-group">
 										<label>Group</label>
-										<select class="form-control" name="pengajar_group" data-validation='required' data-validation-error-msg='Silahkan isi Group'>
+										<select class="form-control" name="pengajar_group" data-validation='required' data-validation-error-msg='Silahkan isi Group' data-toggle="tooltip" data-placement="top" title="Admin Mempunyai Hak Akses Penuh Terhadap System">
 											<?php
 											$group = array('1'=>'Admin', '2'=>'Pengajar');
 											echo'<option value="">-- Pilih Group --</option>';
@@ -156,13 +169,14 @@
 									</div>
 									<?php 
 									$attsubmit = array(
-											'class'=>'btn btn-md btn-success',
+											'class'=>'btn btn-md btn-outline btn-primary',
 											'id'=>'btn-pengajar',
 											'name'=>'btn-pengajar',
 											'type'=>'submit',
-											'content'=>'Simpan'); 
+											'content'=>'<i class="fa fa-save"></i> Simpan'); 
 									echo form_button($attsubmit); 
 									?>
+									<img src="<?= base_url()?>assets/images/ajax-loader.gif" id="LoadingImage" style="display:none; width:50px; height:50px;" />
 								</div><!-- /.col-lg-6 -->
                             </form>
                         </div><!-- /.panel-body -->
@@ -243,6 +257,14 @@
     echo $hapusdata;
     ?>
     
+     <script>
+    // tooltip demo
+    $('.form-group').tooltip({
+        selector: "[data-toggle=tooltip]",
+        container: "body"
+    })
+    </script>
+
     Page rendered in <strong>{elapsed_time}</strong> seconds.
 </body>
 

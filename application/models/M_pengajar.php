@@ -7,6 +7,7 @@ class M_pengajar extends CI_Model{
 	function ambil_pengajar(){
 		$this->db->select('*');
 		$this->db->from('tb_pengajar');
+		$this->db->order_by('pengajar_id', 'DESC');
 		return $this->db->get();
 	}
 	

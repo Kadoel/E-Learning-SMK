@@ -50,13 +50,14 @@ class Jurusan extends CI_Controller{
 	}
 	
 	public function act_jurusan(){
-		$this->form_validation->set_rules('jurusan_nama', 'Nama Jurusan', 'trim|required|xss_clean|callback_cek_jurusan');
+		$this->form_validation->set_rules('jurusan_nama', 'Nama Jurusan', 'htmlspecialchars|trim|required|xss_clean|callback_cek_jurusan');
 		if($this->form_validation->run()==FALSE){
 			echo $this->err;
 		}
 		else{
 			$id = $this->input->post('jurusan_id', 'TRUE');
 			$data['jurusan_nama'] = $this->input->post('jurusan_nama', 'TRUE');
+			$data['jurusan_slug'] = url_title($this->input->post('jurusan_nama'), '-', TRUE);
 			if($id==''){
 				$simpan = $this->m_jurusan->tambah_jurusan($data);
 				if($simpan){
