@@ -3,7 +3,7 @@ E-Learning Sederhana Untuk SMK
 
 #Fitur
 
-*Admin
+**Admin**
 1. Manajemen Pengaturan (Semester, Tahun Pelajaran)
 2. Manajemen Admin dan Pengajar
 3. Manajemen Profil
@@ -13,16 +13,16 @@ E-Learning Sederhana Untuk SMK
 7. Manajemen Kelas
 8. Manajemen Mata Pelajaran
 
-*Pengajar
+**Pengajar**
 1. Manajemen Profil
 2. Manajemen Materi
 3. Kirim Terima Pesan
 
-*Guest
+**Guest**
 1. Mencari Materi (Berdasarkan Kelas, Mata Pelajaran, Pengajar
 2. Download Materi
 
-# Memulai
+#Memulai
 1. Copy file hasil download ke folder root
 2. Ganti Setting Base URL pada application/config/config.php
 3. Buat Database baru, import table beserta field pada assets/database/elearning_smk.sql
