@@ -2,15 +2,25 @@
 E-Learning Sederhana Untuk SMK
 
 #Fitur
-1. Multi Level Login (Admin dan Pengajar)
-2. Pengaturan Semester
-3. Pengaturan Tahun Ajaran
-4. Manajemen Admin dan Pengajar
-5. Manajemen Profil
-6. Manajemen Jurusan
-7. Manajemen Materi (Upload, Update, Delete)[New]
-8. Download Materi [New]
-9. Kirim Terima Pesan [Proses]
+
+*Admin
+1. Manajemen Pengaturan (Semester, Tahun Pelajaran)
+2. Manajemen Admin dan Pengajar
+3. Manajemen Profil
+4. Manajemen Jurusan
+5. Manajemen Materi
+6. Kirim Terima Pesan
+7. Manajemen Kelas
+8. Manajemen Mata Pelajaran
+
+*Pengajar
+1. Manajemen Profil
+2. Manajemen Materi
+3. Kirim Terima Pesan
+
+*Guest
+1. Mencari Materi (Berdasarkan Kelas, Mata Pelajaran, Pengajar
+2. Download Materi
 
 # Memulai
 1. Copy file hasil download ke folder root
